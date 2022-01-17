@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  jenkins:
+    build: .
+#    image: "jenkins/jenkins:lts"
+    restart: unless-stopped
+    container_name: jenkins
+    command: --httpPort=8282
+    expose:
+      - "8282"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    network_mode: host
+
+volumes:
+  jenkins_home:
+    driver: local
